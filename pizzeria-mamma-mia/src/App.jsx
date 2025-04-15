@@ -1,8 +1,9 @@
-  import React from 'react'
+
 import './App.css'
-import Navbar from './components/Navbar'
-import Home from './components/Home';
-import Footer from './components/Footer'
+import Navbar from './Navbar'
+import Home from './Home';
+import Footer from './Footer'
+
 
 
 function App() {
