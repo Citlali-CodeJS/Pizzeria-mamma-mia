@@ -1,8 +1,8 @@
 
 import './App.css'
-import Navbar from './assets/components/Navbar'
-import Home from './assets/components/Home';
-import Footer from './assets/components/Footer'
+import Navbar from './components/Navbar'
+import Home from './components/Home';
+import Footer from './components/Footer'
 
 
 
