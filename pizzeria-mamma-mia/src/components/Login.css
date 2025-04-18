@@ -1,0 +1,38 @@
+
+.login-div-container{
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 90px;
+    
+}
+
+.title-login{
+   font-weight: 900;
+
+}
+
+.login-form-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem;
+}
+
+.login-form-input {
+	display: flex;
+	flex-direction: column;
+   
+}
+
+.login-form-input>input {
+	padding: 0.5rem;
+	margin: 1rem;
+	border-radius: 5px;
+}
+
+.form-error {
+	color: red
+}
