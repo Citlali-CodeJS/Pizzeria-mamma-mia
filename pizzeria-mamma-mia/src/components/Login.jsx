@@ -52,6 +52,7 @@ const  Login = () => {
               type="password"
               className="form-control"
               id="password"
+              placeholder='Password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

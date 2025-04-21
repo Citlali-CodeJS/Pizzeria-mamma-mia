@@ -59,6 +59,7 @@ const Register = () => {
             type="password"
             className="form-control"
             id="password"
+            placeholder='Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -69,6 +70,7 @@ const Register = () => {
             type="password"
             className="form-control"
             id="confirmPassword"
+            placeholder='Confirm Password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
