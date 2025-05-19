@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-
 import './Register.css'
+
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -38,7 +38,7 @@ const Register = () => {
 
   return (
     <div className = "register-div-container">
-      <h1 className='title-register' > <strong>Registro</strong></h1>
+      <h1 className='title-register' > <strong>Register</strong></h1>
       {error && <div className="alert alert-danger">{error}</div>}
       {success && <div className="alert alert-success">{success}</div>}
       <form onSubmit={handleSubmit} className='register-form-container'>

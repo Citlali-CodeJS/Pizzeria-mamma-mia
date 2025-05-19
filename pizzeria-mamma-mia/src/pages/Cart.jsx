@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Card, Table } from 'react-bootstrap';
-import pizzaCart from './pizzas';
+import pizzaCart from '../components/pizzas';
 
 const Cart = () => {
     const [cart, setCart] = useState(

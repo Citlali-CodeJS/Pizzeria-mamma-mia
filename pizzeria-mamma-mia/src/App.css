@@ -11,12 +11,13 @@ justify-content: center;
 }
 /*---Navbar---*/
 nav {
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  
 }
 nav h4{
   font-size: x-large;
@@ -34,17 +35,8 @@ nav button {
   transition: color 0.3s;
 }
 
-nav button:hover {
-  color: #752020;
-}
-/*----Total----*/
-nav button:last-child { 
-  font-weight: bold;
-  background-color: #333;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: rgb(110, 234, 250);
-}
+
+
 /* ---- Home----*/
 .home {
   padding: 20px;
@@ -152,6 +144,7 @@ margin-bottom: 5px;
 .card-container Button{ 
 font-size: 14px;
 }
+
 footer {
   background-color: #333;
   color: #fff;
@@ -161,10 +154,10 @@ footer {
   position: relative;
   bottom: 0;
   width: 100%;
-  margin-top: 5%;
+  margin-top: 25%;
 }
 
 footer p {
-  margin: 3px;
+  margin: 10px;
   
 }
