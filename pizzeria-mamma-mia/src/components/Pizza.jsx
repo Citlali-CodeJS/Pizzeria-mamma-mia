@@ -1,24 +1,23 @@
-import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
+import { usePizzas } from "../context/PizzaContext";
+import { useCart } from "../context/CartContext";
 
 const Pizza = () => {
-  const [pizza, setPizza] = useState(null);
+  const { id } = useParams(); 
+  const { getPizzaById, loading } = usePizzas();
+  const { addToCart } = useCart();
 
-  const getPizza = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/pizzas/p001");
-      const data = await response.json();
-      setPizza(data);
-    } catch (error) {
-      console.error("Error al cargar la pizza:", error);
-    }
+  if (loading) return <p className="text-center mt-5">Cargando pizza...</p>;
+
+  const pizza = getPizzaById(id); 
+
+  if (!pizza) return <p className="text-center mt-5">Pizza no encontrada</p>;
+
+  const handleAddToCart = () => {
+    const { id, name, price, img } = pizza;
+    addToCart({ id, name, price, img });
   };
-
-  useEffect(() => {
-    getPizza();
-  }, []);
-
-  if (!pizza) return <p className="text-center mt-5">Cargando pizza...</p>;
 
   return (
     <Container className="mt-4">
@@ -43,7 +42,9 @@ const Pizza = () => {
               </Card.Text>
               <div className="d-flex justify-content-around">
                 <Button variant="outline-dark">Ver más</Button>
-                <Button className="btn btn-dark">Añadir 🛒</Button>
+                <Button className="btn btn-dark" onClick={handleAddToCart}>
+                  Añadir 🛒
+                </Button>
               </div>
             </Card.Body>
           </Card>
@@ -54,6 +55,3 @@ const Pizza = () => {
 };
 
 export default Pizza;
-
-
-
