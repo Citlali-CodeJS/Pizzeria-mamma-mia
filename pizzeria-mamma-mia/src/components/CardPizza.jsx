@@ -15,7 +15,8 @@ const CardPizza = ({ id, name, ingredients, price, img }) => {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <h5 className="card-title">Pizza {name}</h5>
           <div>
-            <p style={{ color: 'gray', marginLeft: '40%', fontSize: 'larger' }}>Ingredientes:</p>
+            <p style={{ color: 'gray', fontSize: 'larger' }}>
+              Ingredientes:</p>
             <p style={{
               display: 'flex',
               justifyContent: 'center',

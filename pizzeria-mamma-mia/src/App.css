@@ -78,10 +78,7 @@ header p {
 
 .card-title {
   font-size: 1.7rem;
-  margin-bottom: 5px;
-  margin-left: 15px;
   border-bottom: 1px solid #ddd;
-  padding-bottom: 20px;
 }
 
 .card-footer {
