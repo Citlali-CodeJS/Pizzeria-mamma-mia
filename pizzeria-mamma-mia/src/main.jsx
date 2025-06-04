@@ -6,17 +6,20 @@ import './index.css';
 import App from './App.jsx';
 import { CartProvider } from './context/CartContext.jsx';
 import { PizzaProvider } from './context/PizzaContext.jsx';
+import { UserProvider } from './context/UserContext.jsx'; 
 
 const root = createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <CartProvider>
-        <PizzaProvider>
-          <App />
-        </PizzaProvider>
-      </CartProvider>
+      <UserProvider> {/* ✅ ENVUELVE TU APP CON ESTO */}
+        <CartProvider>
+          <PizzaProvider>
+            <App />
+          </PizzaProvider>
+        </CartProvider>
+      </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

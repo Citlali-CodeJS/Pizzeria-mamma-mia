@@ -1,4 +1,6 @@
 import { useCart } from "../context/CartContext"; 
+import { Link } from "react-router-dom";
+
 
 const CardPizza = ({ id, name, ingredients, price, img }) => {
   const { addToCart } = useCart(); 
@@ -39,7 +41,9 @@ const CardPizza = ({ id, name, ingredients, price, img }) => {
             alignItems: 'center',
             paddingBottom: '10px'
           }}>
+            <Link to={`/pizza/${id}`}>
             <button className="btn btn-outline-dark">Ver más 👀</button>
+            </Link>
             <button className="btn btn-dark" onClick={handleAdd}>Añadir 🛒</button>
           </div>
         </div>

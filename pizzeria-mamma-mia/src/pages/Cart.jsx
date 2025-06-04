@@ -1,8 +1,10 @@
 import { Button, Card, Table } from 'react-bootstrap';
 import { useCart } from '../context/CartContext';
+import { useUser } from '../context/UserContext';
 
 const Cart = () => {
   const { cart, increment, decrement, total } = useCart();
+  const { token } = useUser(); 
 
   const PizzaCart = cart.filter((pizza) => pizza.quantity > 0);
 
@@ -26,6 +28,7 @@ const Cart = () => {
             </div>
           </div>
         ))}
+
         <Table className="table table-bordered">
           <thead>
             <tr>
@@ -48,7 +51,14 @@ const Cart = () => {
             </tr>
           </tbody>
         </Table>
-        <Button className="boton_pago btn btn-dark m-2 text-center">Pagar</Button>
+
+       
+        <Button
+          className="boton_pago btn btn-dark m-2 text-center"
+          disabled={!token}
+        >
+          Pagar
+        </Button>
       </div>
     </Card>
   );
