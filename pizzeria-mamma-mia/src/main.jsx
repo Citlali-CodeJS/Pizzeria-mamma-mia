@@ -13,7 +13,7 @@ const root = createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <UserProvider> {/* ✅ ENVUELVE TU APP CON ESTO */}
+      <UserProvider> 
         <CartProvider>
           <PizzaProvider>
             <App />
