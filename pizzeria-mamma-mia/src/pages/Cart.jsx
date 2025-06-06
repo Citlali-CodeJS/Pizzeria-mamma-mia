@@ -1,14 +1,53 @@
+import { useState } from 'react';
 import { Button, Card, Table } from 'react-bootstrap';
 import { useCart } from '../context/CartContext';
 import { useUser } from '../context/UserContext';
 
 const Cart = () => {
-  const { cart, increment, decrement, total } = useCart();
-  const { token } = useUser(); 
+  const { cart, increment, decrement, total, clearCart } = useCart();
+  const { token } = useUser();
+
+  const [loading, setLoading] = useState(false);
+  const [successMsg, setSuccessMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const PizzaCart = cart.filter((pizza) => pizza.quantity > 0);
 
-  if (PizzaCart.length === 0) {
+  const handleCheckout = async () => {
+    if (!token) {
+      setErrorMsg('Debes iniciar sesión para realizar la compra.');
+      return;
+    }
+    setLoading(true);
+    setErrorMsg('');
+    setSuccessMsg('');
+
+    try {
+      const response = await fetch('/api/checkouts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,  
+        },
+        body: JSON.stringify({ items: PizzaCart }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al procesar la compra');
+      }
+
+      await response.json();
+
+      setSuccessMsg('Compra realizada con éxito. ¡Gracias por tu compra😄!');
+      clearCart();
+    } catch (error) {
+      setErrorMsg('No se pudo completar la compra. Intenta de nuevo.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (PizzaCart.length === 0 && !successMsg ) {
     return <p className="text-center mt-5">Tu carrito está vacío 🛒</p>;
   }
 
@@ -52,12 +91,15 @@ const Cart = () => {
           </tbody>
         </Table>
 
-       
+        {errorMsg && <p className="text-danger">{errorMsg}</p>}
+        {successMsg && <p className="text-success">{successMsg}</p>}
+
         <Button
           className="boton_pago btn btn-dark m-2 text-center"
-          disabled={!token}
+          disabled={!token || loading}
+          onClick={handleCheckout}
         >
-          Pagar
+          {loading ? 'Procesando...' : 'Pagar'}
         </Button>
       </div>
     </Card>

@@ -5,7 +5,7 @@ import { useUser } from '../context/UserContext';
 
 const Navbar = () => {
   const { total } = useCart();
-  const { token, logout } = useUser();
+  const { token, email, logout } = useUser();
 
   return (
     <nav>
@@ -15,7 +15,6 @@ const Navbar = () => {
           <Button>🍕 Home</Button>
         </Link>
 
-     
         {!token && (
           <>
             <Link to="/register">
@@ -27,9 +26,9 @@ const Navbar = () => {
           </>
         )}
 
-      
         {token && (
           <>
+            <span>{email}</span> 
             <Link to="/profile">
               <Button>🔓 Profile</Button>
             </Link>
@@ -41,7 +40,6 @@ const Navbar = () => {
           <Button>🍕 Cart</Button>
         </Link>
 
-        
         <Link to="/pizza/p001">
           <Button>🍕 Pizza</Button>
         </Link>

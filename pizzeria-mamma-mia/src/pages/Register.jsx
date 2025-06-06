@@ -1,6 +1,7 @@
-
 import React, { useState } from 'react';
-import './Register.css'
+import './Register.css';
+import { useUser } from '../context/UserContext'; 
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -8,8 +9,10 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const { register } = useUser();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
@@ -29,19 +32,21 @@ const Register = () => {
       return;
     }
 
-    // Aquí iría la lógica para enviar los datos al backend
-    // Si la operación es exitosa:
-    setSuccess('Registro exitoso.');
-    // Si hay un error:
-    // setError('Error al registrar. Inténtalo de nuevo.');
+    try {
+      await register(email, password);
+      setSuccess('Registro exitoso.');
+      navigate('/profile');
+    } catch (err) {
+      setError('Error al registrarse. Intenta con otro email.');
+    }
   };
 
   return (
-    <div className = "register-div-container">
-      <h1 className='title-register' > <strong>Register</strong></h1>
+    <div className="register-div-container">
+      <h1 className="title-register"><strong>Register</strong></h1>
       {error && <div className="alert alert-danger">{error}</div>}
       {success && <div className="alert alert-success">{success}</div>}
-      <form onSubmit={handleSubmit} className='register-form-container'>
+      <form onSubmit={handleSubmit} className="register-form-container">
         <div className="mb-3">
           <label htmlFor="email" className="register-form-input">Email</label>
           <input
